@@ -1,0 +1,76 @@
+name: Rebuild briefing
+
+# 03:45 UTC = 09:15 IST, every morning.
+on:
+  schedule:
+    - cron: "45 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate index.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAGES_REPO_SLUG: ${{ github.repository }}
+        run: python generate.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No change today."
+          else
+            git commit -m "Refresh briefing $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Fail loudly if the page is empty
+        run: |
+          test -s index.html || { echo "index.html missing"; exit 1; }
+          grep -q 'board-section' index.html || { echo "index.html has no boards"; exit 1; }
+
+  deploy:
+    needs: rebuild
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/configure-pages@v5
+
+      - name: Stage the static files
+        run: |
+          mkdir -p _site
+          cp index.html .nojekyll _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
