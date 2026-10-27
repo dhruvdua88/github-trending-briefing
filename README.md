@@ -1,28 +1,54 @@
 # What's hot on GitHub — a daily briefing
 
-A single static page, rebuilt every morning by GitHub Actions, that explains what is trending on GitHub and on Hacker News in plain English — with a concrete use case for each project, for people who do not write code.
+One static page, rebuilt every morning by GitHub Actions, that explains what is trending on GitHub and on Hacker News in plain English — with a concrete use case for each project, for people who do not write code.
 
-**Live page:** https://dhruvdua88.github.io/github-trending-briefing/
+**Live:** https://dhruvdua88.github.io/github-trending-briefing/
+**Archive:** https://dhruvdua88.github.io/github-trending-briefing/archive/
+**Build manifest:** https://dhruvdua88.github.io/github-trending-briefing/build.json
 
-Three leaderboards from [`github.com/trending`](https://github.com/trending) — 24 hours, 7 days, 30 days — re-sorted strictly by stars gained, plus the front page of Hacker News at build time.
+Three leaderboards from [`github.com/trending`](https://github.com/trending) — 24 hours, 7 days, 30 days — re-sorted strictly by stars gained, plus Hacker News stories from the last 24 hours.
 
 ## How it stays current
 
-Everything happens in GitHub Actions. Nothing runs on a personal machine, and no local computer needs to be switched on.
+Everything happens in GitHub Actions. Nothing runs on a personal machine; no laptop needs to be awake.
 
-| Step | Where | When |
+| Step | What it does | When |
 | --- | --- | --- |
-| Fetch boards + render `index.html` | `.github/workflows/daily.yml` | 03:45 UTC (09:15 IST) daily |
-| Commit the new page | same workflow | only when the output changed |
-| Publish to GitHub Pages | same workflow | after every successful rebuild |
+| Rebuild | fetch boards, API, Hacker News → render `index.html` | 03:45 UTC (09:15 IST) daily |
+| Verify | re-read the archived payloads, recompute a delta, check freshness | before every deploy |
+| Commit | `index.html`, `build.json`, `archive/` | only when something changed |
+| Deploy | publish `_site` to GitHub Pages | after a verified rebuild |
 
-Sources, all public and unauthenticated apart from the workflow's own token:
+GitHub sometimes starts scheduled runs a few minutes late. The page prints its own build time, so a late run is visible rather than silently wrong.
 
-- `https://github.com/trending?since=daily|weekly|monthly` — the boards and star deltas
-- `https://api.github.com/repos/{owner}/{repo}` — star totals, primary language, topics
-- `https://hn.algolia.com/api/v1/search?tags=front_page` — Hacker News front page, with a Firebase fallback (`hacker-news.firebaseio.com/v0`)
+## It refuses to lie
 
-If a source fails, the workflow fails and the previous page stays live. It never publishes a half-built page.
+`generate.py` writes the raw payloads it used — the three board HTML files and the Hacker News feed — into `archive/raw/<date>/`, gzipped, with their SHA-256 in `build.json`.
+
+`verify.py` then runs as a separate step and does not trust the generator:
+
+1. every archived payload still hashes to what `build.json` claims;
+2. the #1 repository on the daily board carries the same star delta on the page as the raw HTML says;
+3. the snapshot is under 8 hours old;
+4. the page's status marker agrees with `build.json` (banner present iff the build was degraded);
+5. no unreplaced template tokens survived.
+
+If any check fails the workflow stops and the previous deploy stays live.
+
+Failure policy is deliberately split:
+
+- **Any GitHub board missing → hard fail.** The page would be meaningless, so nothing is published.
+- **Hacker News missing → degraded publish.** Both the timestamped Firebase feed and the Algolia front page are tried; if neither answers, the page publishes with a visible banner naming the missing source. Real data, partial morning, stated plainly.
+
+## Sources
+
+- `https://github.com/trending?since=daily|weekly|monthly` — boards and star deltas
+- `https://api.github.com/repos/{owner}/{repo}` — stars, language, topics, creation date, last-commit date
+- `https://api.github.com/repos/{owner}/{repo}/readme` — only for trending repos with no write-up yet, quoted not paraphrased
+- `https://hacker-news.firebaseio.com/v0` — top stories with timestamps, filtered to the last 24 hours
+- `https://hn.algolia.com/api/v1/search?tags=front_page` — fallback if Firebase fails
+
+Every card also prints its own evidence: stars per day since the repo was created, and when it last received a commit. A repo climbing faster than a codebase usually earns is flagged on the card rather than quietly praised.
 
 ## Editing the write-ups
 
@@ -36,21 +62,23 @@ All prose lives in [`content.py`](content.py), one entry per repository:
 },
 ```
 
-`cat` is one of `agents`, `design`, `media`, `money`, `security`, `dev`, `office`, `fun` — it drives the filter chips. A repository that trends without an entry still appears, labelled honestly: GitHub's own description, plus a note that no write-up exists yet. Nothing is invented from the name.
+`cat` drives the filter chips: `agents`, `design`, `media`, `money`, `security`, `dev`, `office`, `fun`.
 
-Adding an entry is a plain commit; the next scheduled run picks it up.
+A repository that trends without an entry still appears — GitHub's own description, or a quoted README paragraph, plus an explicit note that no write-up exists. Nothing is invented from the name.
 
-## Refreshing by hand
+## Archive
 
-Actions → **Rebuild briefing** → *Run workflow*. Same pipeline, on demand.
+One file per morning under `archive/`, plus an index. Published pages are not retro-edited; a correction shows up as another day's page.
+
+Raw payloads are kept for 14 days and then pruned, so the repository does not grow without limit. The rendered pages stay.
 
 ## Running it locally (optional)
 
-Only needed if you are changing the generator itself:
+Only for changing the generator itself:
 
 ```bash
-python3 generate.py            # writes index.html
-GITHUB_TOKEN=ghp_… python3 generate.py   # avoids the 60 req/hour anonymous API limit
+GITHUB_TOKEN=ghp_… python3 generate.py   # token avoids the 60 req/hour limit
+python3 verify.py                        # must pass before you commit
 ```
 
 Standard library only — no dependencies to install.
