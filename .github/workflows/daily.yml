@@ -41,7 +41,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PAGES_REPO_SLUG: ${{ github.repository }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          SKIP_IF_FRESH_HOURS: "5"
+          # Only the extra scheduled attempts skip work; a manual run or a push
+          # always rebuilds, so template changes go live immediately.
+          SKIP_IF_FRESH_HOURS: ${{ github.event_name == 'schedule' && '5' || '' }}
         run: python generate.py
 
       # Independent check: re-read the archived payloads, recompute a delta,
