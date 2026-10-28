@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's hot on GitHub — 28 October 2026</title>
+<meta name="description" content="GitHub trending today, this week and this month, explained in plain English with use cases for non-coders. Rebuilt every morning.">
+<meta property="og:title" content="What's hot on GitHub — a briefing for people who don't write code">
+<meta property="og:description" content="Three leaderboards: 24 hours, 7 days, 30 days. What each project actually is, and what you would do with it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#e8ede3;
+  --card:#f6f8f1;
+  --ink:#10201a;
+  --muted:#5a6a5f;
+  --line:rgba(16,32,26,.18);
+  --coral:#d9451f;
+  --teal:#0a5a4b;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --wrap:1160px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:1.05rem;line-height:1.62;font-weight:400;
+  background-image:radial-gradient(rgba(16,32,26,.055) 1px,transparent 1px);
+  background-size:5px 5px;
+}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+
+.ticker{
+  background:var(--ink);color:#f2f4ec;overflow:hidden;white-space:nowrap;
+  font-family:var(--display);font-size:.82rem;letter-spacing:.01em;
+  border-bottom:3px solid var(--coral);
+}
+.ticker-track{display:inline-flex;padding:.55rem 0;animation:slide 90s linear infinite;will-change:transform}
+.tick{display:inline-flex;gap:.45rem;align-items:baseline;padding:0 1.4rem;border-right:1px solid rgba(242,244,236,.25);font-weight:600}
+.tick-num{color:#f6a58f}
+.tick-per{opacity:.6;font-weight:400}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.6rem}
+
+header.masthead{padding:3.2rem 0 1.6rem;border-bottom:1px solid var(--line)}
+.snapshot{font-family:var(--display);font-size:.85rem;font-weight:600;color:var(--teal);margin:0 0 1.4rem;letter-spacing:.01em}
+h1{
+  font-family:var(--display);font-weight:800;font-size:clamp(2.9rem,7.4vw,5.6rem);
+  line-height:.92;letter-spacing:-.035em;margin:0 0 1.1rem;
+}
+h1 span{display:block;font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(1.25rem,2.6vw,1.85rem);letter-spacing:-.01em;line-height:1.25;margin-top:.9rem;color:var(--teal)}
+.standfirst{max-width:56ch;font-size:1.16rem;margin:0 0 2rem;color:#22322b}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 .4rem}
+.stats div{background:var(--card);padding:1rem 1.1rem}
+.stats dt{font-family:var(--display);font-size:.78rem;font-weight:600;color:var(--muted);margin:0 0 .25rem}
+.stats dd{margin:0;font-family:var(--display);font-size:1.7rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stats dd small{font-family:var(--serif);font-weight:400;font-size:.9rem;color:var(--muted);letter-spacing:0}
+
+.reader{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding:2.4rem 0 2.6rem;border-bottom:1px solid var(--line)}
+.reader h2{grid-column:1/-1;font-family:var(--display);font-size:1.05rem;font-weight:600;margin:0;color:var(--teal)}
+.reader p{margin:0;font-size:.98rem;color:#26352e}
+.reader p strong{font-family:var(--display);font-weight:600;font-size:.95rem;display:block;margin-bottom:.15rem;color:var(--ink)}
+
+.jump{position:sticky;top:0;z-index:20;background:rgba(232,237,227,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:.7rem 0}
+.jump .wrap{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.jump a{font-family:var(--display);font-size:.86rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--coral);padding-bottom:1px}
+.chips{display:flex;gap:.45rem;flex-wrap:wrap;margin-left:auto}
+.chip{
+  font-family:var(--display);font-size:.8rem;font-weight:600;letter-spacing:.005em;
+  background:transparent;color:var(--ink);border:1px solid var(--line);
+  border-radius:999px;padding:.28rem .75rem;cursor:pointer;transition:background .16s,color .16s,border-color .16s;
+}
+.chip:hover{border-color:var(--teal);color:var(--teal)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#f2f4ec;border-color:var(--ink)}
+
+.board-section{padding:3rem 0 1rem}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;align-items:end;margin-bottom:1.6rem}
+.section-head h2{font-family:var(--display);font-size:clamp(2rem,4vw,2.9rem);font-weight:800;letter-spacing:-.03em;margin:0;line-height:1}
+.deck{margin:0;font-size:1rem;color:#33443b;max-width:46ch}
+
+ol.board{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.row{
+  display:grid;grid-template-columns:4.6rem minmax(0,1fr) 10.5rem;
+  gap:1.4rem;padding:1.5rem 0 1.5rem .2rem;border-bottom:1px solid var(--line);
+  transition:background .18s;
+}
+.row:hover{background:rgba(246,248,241,.7)}
+.row[hidden]{display:none}
+.rank{
+  font-family:var(--display);font-weight:800;font-size:2.5rem;line-height:.9;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;color:transparent;-webkit-text-stroke:1.4px rgba(16,32,26,.55);
+  padding-top:.1rem;text-align:right;
+}
+ol.board > li:first-child .rank{-webkit-text-stroke:1.6px var(--coral);color:rgba(217,69,31,.1)}
+.body h3{margin:0 0 .4rem;font-family:var(--display);font-size:1.22rem;font-weight:600;letter-spacing:-.01em;word-break:break-word}
+.body h3 a{text-decoration:none}
+.body h3 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.16em}
+.what{margin:0 0 .55rem;max-width:66ch}
+.use{margin:0 0 .6rem;max-width:66ch;font-size:.98rem;color:#243329}
+.use-label{font-family:var(--display);font-weight:600;font-size:.82rem;color:var(--coral);margin-right:.15rem}
+.use.pending{color:var(--muted);font-style:italic}
+.what.repeated{color:var(--muted);font-size:.96rem}
+.foot{margin:0;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-family:var(--display);font-size:.75rem}
+.tag{border:1px solid var(--line);border-radius:999px;padding:.12rem .55rem;font-weight:600;color:var(--teal)}
+.tag-design,.tag-media{color:#8c3f14;border-color:rgba(140,63,20,.35)}
+.tag-money,.tag-security{color:#8a1730;border-color:rgba(138,23,48,.3)}
+.tag-fun{color:#5b4a8a;border-color:rgba(91,74,138,.35)}
+.also{color:var(--muted);font-weight:400;font-style:italic;font-family:var(--serif);font-size:.8rem}
+.meta{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:.1rem;font-family:var(--display);font-variant-numeric:tabular-nums}
+.delta{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;color:var(--coral);line-height:1.05}
+#week .delta,#month .delta{color:var(--teal)}
+.per{font-size:.74rem;font-weight:600;color:var(--muted)}
+.total{font-size:.78rem;font-weight:600;margin-top:.35rem}
+.lang{font-size:.74rem;color:var(--muted);font-weight:400}
+
+.rest{margin:3.2rem 0 0;padding:2.2rem 0 0;border-top:2px solid var(--ink)}
+.rest h2{font-family:var(--display);font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin:0 0 .3rem}
+.rest .hint{margin:0 0 1.4rem;font-size:.95rem;color:var(--muted);max-width:60ch}
+.rest ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 2rem}
+.rest li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem;align-items:baseline;font-size:.93rem;border-bottom:1px dotted var(--line);padding-bottom:.7rem}
+.rest li > span:last-child{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#2c3b33}
+.rest .r-name{font-family:var(--display);font-weight:600;white-space:nowrap}
+.rest .r-name a{text-decoration:none}
+.rest .r-name a:hover{text-decoration:underline}
+.rest .r-board{font-family:var(--display);font-size:.68rem;font-weight:600;color:var(--muted)}
+
+.start{margin:3.4rem 0 0;background:var(--ink);color:#eef1e7;padding:2.4rem 2.2rem 2.6rem}
+.start h2{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:0 0 .4rem;color:#fff}
+.start .lede{margin:0 0 1.6rem;color:#c3cbbc;max-width:58ch;font-size:.98rem}
+.picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}
+.pick h3{font-family:var(--display);font-size:1rem;font-weight:600;margin:0 0 .3rem;color:#fff}
+.pick h3 a{color:#fff;text-decoration:none}
+.pick h3 a:hover{text-decoration:underline}
+.pick .why{margin:0;font-size:.93rem;color:#c3cbbc}
+.pick .time{display:block;font-family:var(--display);font-size:.72rem;font-weight:600;color:#f6a58f;margin-bottom:.35rem}
+.start a{color:#f6a58f}
+
+footer.colophon{padding:2.6rem 0 4rem;border-top:1px solid var(--line);margin-top:3rem}
+footer.colophon p{margin:0 0 .75rem;font-size:.94rem;color:#3d4d44;max-width:74ch}
+footer.colophon strong{color:#33443b}
+
+.count-note{font-family:var(--display);font-size:.82rem;color:var(--muted);margin:.8rem 0 0}
+.banner{
+  background:#3a1d12;color:#f7e8df;border-bottom:3px solid var(--coral);
+  font-family:var(--display);font-size:.86rem;font-weight:400;line-height:1.5;
+  padding:.7rem 1.6rem;
+}
+.banner strong{font-weight:600;color:#ffc8b4}
+.evidence{
+  margin:0 0 .55rem;font-family:var(--display);font-size:.76rem;font-weight:600;
+  color:#4a5a50;font-variant-numeric:tabular-nums;
+}
+.what .src{font-family:var(--display);font-size:.74rem;color:var(--muted);font-style:normal;white-space:nowrap}
+.flag{
+  font-family:var(--display);font-size:.72rem;font-weight:600;color:#8a1730;
+  border:1px solid rgba(138,23,48,.35);border-radius:999px;padding:.1rem .5rem;
+  background:rgba(217,69,31,.06);
+}
+.hn-age{color:var(--muted)}
+
+
+.hn{margin:3.2rem 0 0;padding:2.6rem 0 0;border-top:3px double var(--ink)}
+.hn .section-head{margin-bottom:1.3rem}
+.hn-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.4rem}
+.hn-list li{padding:.72rem 0;border-bottom:1px dotted var(--line);break-inside:avoid}
+.hn-list a{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.3;text-decoration:none;display:block}
+.hn-list a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+.hn-meta{display:flex;gap:.7rem;flex-wrap:wrap;font-family:var(--display);font-variant-numeric:tabular-nums;font-size:.74rem;color:var(--muted);margin-top:.2rem}
+.hn-host{color:var(--teal);font-weight:600}
+.hn-note{font-size:.85rem;color:var(--muted);margin:1.1rem 0 0;max-width:70ch}
+.tick-hn{color:#9fd3c7}
+
+@media (max-width:900px){
+  .reader,.picks,.rest ul,.hn-list{grid-template-columns:1fr}
+  .reader{gap:1.4rem}
+  .section-head{grid-template-columns:1fr;gap:.6rem}
+  .row{grid-template-columns:2.6rem minmax(0,1fr);gap:1rem}
+  .rank{font-size:1.7rem}
+  .meta{grid-column:2;flex-direction:row;align-items:baseline;gap:.5rem;text-align:left;margin-top:.2rem;flex-wrap:wrap}
+  .delta{font-size:1.15rem}
+  .total{margin-top:0}
+  .stats{grid-template-columns:1fr}
+  .start{padding:1.8rem 1.3rem 2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none}
+  .ticker{overflow-x:auto}
+  *{transition:none!important}
+}
+@media print{
+  body{background:#fff}
+  .ticker,.jump{display:none}
+  .row{break-inside:avoid}
+  .start{background:#fff;color:#000;border:2px solid #000}
+  .start h2,.pick h3,.start .lede,.pick .why{color:#000}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track"><span class="tick"><b>hallmark</b> <span class="tick-num">&plus;2,830</span> <span class="tick-per">24h</span></span><span class="tick"><b>DeepTutor</b> <span class="tick-num">&plus;1,598</span> <span class="tick-per">24h</span></span><span class="tick"><b>cindy</b> <span class="tick-num">&plus;1,465</span> <span class="tick-per">24h</span></span><span class="tick"><b>impeccable</b> <span class="tick-num">&plus;1,449</span> <span class="tick-per">24h</span></span><span class="tick"><b>ai-design-skills</b> <span class="tick-num">&plus;1,395</span> <span class="tick-per">24h</span></span><span class="tick"><b>thinkrail</b> <span class="tick-num">&plus;1,204</span> <span class="tick-per">24h</span></span><span class="tick"><b>security-audit-skill</b> <span class="tick-num">&plus;16,388</span> <span class="tick-per">7d</span></span><span class="tick"><b>orca</b> <span class="tick-num">&plus;8,802</span> <span class="tick-per">7d</span></span><span class="tick"><b>graphify</b> <span class="tick-num">&plus;7,268</span> <span class="tick-per">7d</span></span><span class="tick"><b>TradingAgents</b> <span class="tick-num">&plus;4,882</span> <span class="tick-per">7d</span></span><span class="tick"><b>opencode</b> <span class="tick-num">&plus;4,334</span> <span class="tick-per">7d</span></span><span class="tick"><b>andrej-karpathy-skills</b> <span class="tick-num">&plus;4,039</span> <span class="tick-per">7d</span></span><span class="tick"><b>VoiceStudio</b> <span class="tick-num">&plus;52,726</span> <span class="tick-per">30d</span></span><span class="tick"><b>ponytail</b> <span class="tick-num">&plus;32,214</span> <span class="tick-per">30d</span></span><span class="tick"><b>security-audit-skill</b> <span class="tick-num">&plus;27,415</span> <span class="tick-per">30d</span></span><span class="tick"><b>ECC</b> <span class="tick-num">&plus;23,998</span> <span class="tick-per">30d</span></span><span class="tick"><b>hyperframes</b> <span class="tick-num">&plus;20,501</span> <span class="tick-per">30d</span></span><span class="tick"><b>paperclip</b> <span class="tick-num">&plus;19,922</span> <span class="tick-per">30d</span></span><span class="tick"><b>US Government is hiding a secret c</b> <span class="tick-hn">848 points</span> <span class="tick-per">HN</span></span><span class="tick"><b>Ghostty 1.4</b> <span class="tick-hn">844 points</span> <span class="tick-per">HN</span></span><span class="tick"><b>Genie 4</b> <span class="tick-hn">791 points</span> <span class="tick-per">HN</span></span><span class="tick"><b>hallmark</b> <span class="tick-num">&plus;2,830</span> <span class="tick-per">24h</span></span><span class="tick"><b>DeepTutor</b> <span class="tick-num">&plus;1,598</span> <span class="tick-per">24h</span></span><span class="tick"><b>cindy</b> <span class="tick-num">&plus;1,465</span> <span class="tick-per">24h</span></span><span class="tick"><b>impeccable</b> <span class="tick-num">&plus;1,449</span> <span class="tick-per">24h</span></span><span class="tick"><b>ai-design-skills</b> <span class="tick-num">&plus;1,395</span> <span class="tick-per">24h</span></span><span class="tick"><b>thinkrail</b> <span class="tick-num">&plus;1,204</span> <span class="tick-per">24h</span></span><span class="tick"><b>security-audit-skill</b> <span class="tick-num">&plus;16,388</span> <span class="tick-per">7d</span></span><span class="tick"><b>orca</b> <span class="tick-num">&plus;8,802</span> <span class="tick-per">7d</span></span><span class="tick"><b>graphify</b> <span class="tick-num">&plus;7,268</span> <span class="tick-per">7d</span></span><span class="tick"><b>TradingAgents</b> <span class="tick-num">&plus;4,882</span> <span class="tick-per">7d</span></span><span class="tick"><b>opencode</b> <span class="tick-num">&plus;4,334</span> <span class="tick-per">7d</span></span><span class="tick"><b>andrej-karpathy-skills</b> <span class="tick-num">&plus;4,039</span> <span class="tick-per">7d</span></span><span class="tick"><b>VoiceStudio</b> <span class="tick-num">&plus;52,726</span> <span class="tick-per">30d</span></span><span class="tick"><b>ponytail</b> <span class="tick-num">&plus;32,214</span> <span class="tick-per">30d</span></span><span class="tick"><b>security-audit-skill</b> <span class="tick-num">&plus;27,415</span> <span class="tick-per">30d</span></span><span class="tick"><b>ECC</b> <span class="tick-num">&plus;23,998</span> <span class="tick-per">30d</span></span><span class="tick"><b>hyperframes</b> <span class="tick-num">&plus;20,501</span> <span class="tick-per">30d</span></span><span class="tick"><b>paperclip</b> <span class="tick-num">&plus;19,922</span> <span class="tick-per">30d</span></span><span class="tick"><b>US Government is hiding a secret c</b> <span class="tick-hn">848 points</span> <span class="tick-per">HN</span></span><span class="tick"><b>Ghostty 1.4</b> <span class="tick-hn">844 points</span> <span class="tick-per">HN</span></span><span class="tick"><b>Genie 4</b> <span class="tick-hn">791 points</span> <span class="tick-per">HN</span></span></div>
+</div>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="snapshot">Snapshot taken 28 October 2026, 09:39 IST &middot; github.com/trending &middot; rebuilt every morning</p>
+    <h1>What&rsquo;s hot on GitHub<span>a briefing for people who don&rsquo;t write code</span></h1>
+    <p class="standfirst">Three leaderboards: the last 24 hours, the last 7 days, the last 30 days. For each project, what it actually is and what you would do with it &mdash; no jargon, no installation instructions.</p>
+    <dl class="stats">
+      <div><dt>Repositories written up</dt><dd>31 <small>plus 9 in one line</small></dd></div>
+      <div><dt>Biggest 24-hour jump</dt><dd>+2,830 <small>hallmark</small></dd></div>
+      <div><dt>Biggest 30-day jump</dt><dd>+52,726 <small>VoiceStudio</small></dd></div>
+    </dl>
+  </header>
+
+  <section class="reader">
+    <h2>Three things worth knowing before you scroll</h2>
+    <p><strong>A repository is a public folder of software.</strong> Stars are bookmarks from developers. Trending ranks what got bookmarked most in a day, a week or a month &mdash; it measures attention, not quality, and definitely not safety.</p>
+    <p><strong>Much of this is not software you install.</strong> A growing share is a text file that tells an AI assistant how to do a job. You hand the file to Claude or ChatGPT, and the behaviour changes. No coding involved.</p>
+    <p><strong>Almost all of it is AI.</strong> AI tooling, AI skills, AI apps &mdash; that is simply what GitHub&rsquo;s front page looks like now. The useful question is which AI, and for whom.</p>
+  </section>
+</div>
+
+<nav class="jump" aria-label="Sections and filters">
+  <div class="wrap">
+    <a href="#today">Today</a>
+    <a href="#week">This week</a>
+    <a href="#month">This month</a>
+    <div class="chips" role="group" aria-label="Filter by what the tools are for">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">Everything</button>
+      <button class="chip" type="button" data-filter="agents">AI assistants</button><button class="chip" type="button" data-filter="design">Design</button><button class="chip" type="button" data-filter="media">Media</button><button class="chip" type="button" data-filter="money">Money</button><button class="chip" type="button" data-filter="security">Security</button><button class="chip" type="button" data-filter="dev">Dev tools</button><button class="chip" type="button" data-filter="office">Office work</button><button class="chip" type="button" data-filter="fun">Fun</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="board-section" id="today">
+    <header class="section-head">
+      <h2>Today</h2>
+      <p class="deck">Ranked by stars gained in the last 24 hours. This board rewards a launch, a viral post or a sudden wave of curiosity &mdash; the noisiest signal of the three, so read the use cases rather than the numbers.</p>
+    </header>
+    <ol class="board">
+
+      <li class="row" data-cat="design">
+        <div class="rank" aria-hidden="true">01</div>
+        <div class="body">
+          <h3><a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">Nutlope/hallmark</a></h3>
+          <p class="what">A set of written instructions you hand to an AI assistant (Claude Code, Cursor, Codex) so the pages it produces stop looking like generic AI output. Think of it as a pre-flight checklist that kills the template look.</p>
+          <p class="use"><span class="use-label">Use it to</span> Paste it into whichever AI tool builds your landing page or pitch deck, and the type, spacing and colour come out deliberate instead of default.</p>
+          <p class="evidence">215 stars/day since Apr 2026 &middot; last commit 13h ago</p>
+          <p class="foot">
+            <span class="tag tag-design">Design</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;2,830</span>
+          <span class="per">stars today</span>
+          <span class="total">39,278 total</span>
+          <span class="lang">CSS</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">02</div>
+        <div class="body">
+          <h3><a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">HKUDS/DeepTutor</a></h3>
+          <p class="what">DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.</p>
+          <p class="use pending">No plain-English write-up yet &mdash; this one has just arrived on the board. The words above are GitHub&rsquo;s, not mine.</p>
+          <p class="evidence">153 stars/day since Dec 2025 &middot; last commit 9h ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,598</span>
+          <span class="per">stars today</span>
+          <span class="total">46,279 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">03</div>
+        <div class="body">
+          <h3><a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">makecindy/cindy</a></h3>
+          <p class="what">An open-source AI agent that runs out of the box and does tasks instead of chatting about them — connected to your own accounts, with a phone app so it keeps working while you are out.</p>
+          <p class="use"><span class="use-label">Use it to</span> Inbox triage, draft replies waiting in your outbox, or a checklist that keeps moving while you are at a client&#x27;s office.</p>
+          <p class="evidence">78 stars/day since Jul 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,465</span>
+          <span class="per">stars today</span>
+          <span class="total">7,603 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="design">
+        <div class="rank" aria-hidden="true">04</div>
+        <div class="body">
+          <h3><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">pbakaus/impeccable</a></h3>
+          <p class="what">A design language plus a companion tool that makes AI coding assistants measurably better at layout, hierarchy and typography. It sits between the assistant and the pixels, and corrects the choices assistants usually get wrong.</p>
+          <p class="use"><span class="use-label">Use it to</span> The reason a form or dashboard an AI builds for you stops arriving as five identical rounded cards with a soft grey shadow.</p>
+          <p class="evidence">262 stars/day since Nov 2025 &middot; last commit 11h ago</p>
+          <p class="foot">
+            <span class="tag tag-design">Design</span>
+            <span class="also">also on this month</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,449</span>
+          <span class="per">stars today</span>
+          <span class="total">90,821 total</span>
+          <span class="lang">Rust</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">05</div>
+        <div class="body">
+          <h3><a href="https://github.com/elayadesign/ai-design-skills" target="_blank" rel="noopener">elayadesign/ai-design-skills</a></h3>
+          <p class="what">&ldquo;A growing collection of design skills for AI coding tools — Claude Code, Cursor, Codex, Windsurf, and anything else that reads a markdown rules file.&rdquo; <span class="src">quoted from its README</span></p>
+          <p class="use pending">No plain-English write-up yet &mdash; this one has just arrived on the board. The words above are GitHub&rsquo;s, not mine.</p>
+          <p class="evidence">108 stars/day since Jul 2026 &middot; last commit 12h ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,395</span>
+          <span class="per">stars today</span>
+          <span class="total">9,735 total</span>
+          <span class="lang">Unknown</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">06</div>
+        <div class="body">
+          <h3><a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">JetBrains/thinkrail</a></h3>
+          <p class="what">A lightweight editor built for &#x27;vibe coding&#x27;: you describe what you want, the AI writes the code, but you still see the real file tree and every change. Nothing happens invisibly.</p>
+          <p class="use"><span class="use-label">Use it to</span> The best option for someone who doesn&#x27;t code — the AI does the work, the editor keeps the receipts so a mistake cannot hide.</p>
+          <p class="evidence">38 stars/day since Jul 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,204</span>
+          <span class="per">stars today</span>
+          <span class="total">4,196 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">07</div>
+        <div class="body">
+          <h3><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">affaan-m/ECC</a></h3>
+          <p class="what">An optimisation layer for AI agents: reusable skills, memory and session handling, so your assistant carries context forward instead of starting from zero every morning.</p>
+          <p class="use"><span class="use-label">Use it to</span> Set it up once and your assistant remembers how your firm words a covering letter, which folders matter, and what it must never touch.</p>
+          <p class="evidence">1,028 stars/day since Jan 2026 &middot; last commit 1 days ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            <span class="also">also on this month</span>
+            <span class="flag">climb is faster than a codebase usually earns (1,028/day)</span>
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,165</span>
+          <span class="per">stars today</span>
+          <span class="total">291,018 total</span>
+          <span class="lang">JavaScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="media">
+        <div class="rank" aria-hidden="true">08</div>
+        <div class="body">
+          <h3><a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener">gitroomhq/postiz-app</a></h3>
+          <p class="what">Open-source social media scheduling with agents in the loop: draft a month of posts, review, then let it publish on a timetable.</p>
+          <p class="use"><span class="use-label">Use it to</span> Keep a firm LinkedIn presence without a weekly scramble — one planning session covers the month.</p>
+          <p class="evidence">33 stars/day since Jul 2023 &middot; last commit 3 days ago</p>
+          <p class="foot">
+            <span class="tag tag-media">Media</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;951</span>
+          <span class="per">stars today</span>
+          <span class="total">39,528 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">09</div>
+        <div class="body">
+          <h3><a href="https://github.com/togg53192-cmd/jailbreaks" target="_blank" rel="noopener">togg53192-cmd/jailbreaks</a></h3>
+          <p class="what">LIST OF ALL MY JAILBREAKS</p>
+          <p class="use pending">No plain-English write-up yet &mdash; this one has just arrived on the board. The words above are GitHub&rsquo;s, not mine.</p>
+          <p class="evidence">44 stars/day since Jun 2026 &middot; last commit 2 days ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;902</span>
+          <span class="per">stars today</span>
+          <span class="total">5,796 total</span>
+          <span class="lang">Unknown</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">10</div>
+        <div class="body">
+          <h3><a href="https://github.com/nightly-labs/openbot" target="_blank" rel="noopener">nightly-labs/openbot</a></h3>
+          <p class="what">A local-first desktop workspace for persistent AI teammates: the assistants live on your machine and keep working between sessions.</p>
+          <p class="use"><span class="use-label">Use it to</span> A middle ground between one chat window and a full agent platform.</p>
+          <p class="evidence">34 stars/day since Aug 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;777</span>
+          <span class="per">stars today</span>
+          <span class="total">2,591 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="board-section" id="week">
+    <header class="section-head">
+      <h2>This week</h2>
+      <p class="deck">Seven days of accumulation, which filters out the single-day spikes. These are the things developers keep coming back to, before anyone has forgotten them.</p>
+    </header>
+    <ol class="board">
+
+      <li class="row" data-cat="security">
+        <div class="rank" aria-hidden="true">01</div>
+        <div class="body">
+          <h3><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">cloudflare/security-audit-skill</a></h3>
+          <p class="what">Cloudflare&#x27;s instructions for making a coding agent perform a proper multi-stage security review of a codebase, with checks that are independently verified instead of taken on trust.</p>
+          <p class="use"><span class="use-label">Use it to</span> If a portal touches client KYC, PAN or bank data, run this review before it goes live — it is a checklist an accounting firm can actually defend.</p>
+          <p class="evidence">385 stars/day since Jun 2026 &middot; last commit 43 days ago</p>
+          <p class="foot">
+            <span class="tag tag-security">Security</span>
+            <span class="also">also on this month</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;16,388</span>
+          <span class="per">stars this week</span>
+          <span class="total">50,406 total</span>
+          <span class="lang">JavaScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">02</div>
+        <div class="body">
+          <h3><a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">stablyai/orca</a></h3>
+          <p class="what">A workbench for running a fleet of AI agents at once: give different jobs to different agents and watch them all work in parallel.</p>
+          <p class="use"><span class="use-label">Use it to</span> A rota for digital staff — one agent drafts, one checks, one formats, and you review the output at the end.</p>
+          <p class="evidence">481 stars/day since Mar 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;8,802</span>
+          <span class="per">stars this week</span>
+          <span class="total">108,220 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">03</div>
+        <div class="body">
+          <h3><a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">Graphify-Labs/graphify</a></h3>
+          <p class="what">Turns an entire codebase — plus its documents, SQL schemas, config files and PDFs — into a map you can question in plain language.</p>
+          <p class="use"><span class="use-label">Use it to</span> Ask &#x27;where is GST calculated?&#x27; on an inherited accounting system rather than reading ten thousand lines of code to find out.</p>
+          <p class="evidence">662 stars/day since Apr 2026 &middot; last commit 9h ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;7,268</span>
+          <span class="per">stars this week</span>
+          <span class="total">137,102 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="money">
+        <div class="rank" aria-hidden="true">04</div>
+        <div class="body">
+          <h3><a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noopener">TauricResearch/TradingAgents</a></h3>
+          <p class="what">A research framework that simulates a trading desk: separate AI agents play analyst, researcher, trader and risk manager, argue their cases, and settle on a decision. It is a study tool for markets, not a money-printing machine.</p>
+          <p class="use"><span class="use-label">Use it to</span> Stress-test an investment idea by making it survive a fake debate first. Read it as education — nobody should connect this to a live brokerage account.</p>
+          <p class="evidence">176 stars/day since Dec 2024 &middot; last commit 19h ago</p>
+          <p class="foot">
+            <span class="tag tag-money">Money</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;4,882</span>
+          <span class="per">stars this week</span>
+          <span class="total">117,420 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">05</div>
+        <div class="body">
+          <h3><a href="https://github.com/anomalyco/opencode" target="_blank" rel="noopener">anomalyco/opencode</a></h3>
+          <p class="what">A free, open-source coding agent: a terminal program where you describe a task and it edits the files in your project.</p>
+          <p class="use"><span class="use-label">Use it to</span> The zero-cost way to try an AI coding assistant before deciding whether to pay for one.</p>
+          <p class="evidence">408 stars/day since Apr 2025 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;4,334</span>
+          <span class="per">stars this week</span>
+          <span class="total">222,451 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">06</div>
+        <div class="body">
+          <h3><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">multica-ai/andrej-karpathy-skills</a></h3>
+          <p class="what">A single instruction file (a CLAUDE.md) that changes how a coding assistant behaves, distilled from Andrej Karpathy&#x27;s notes on how he wants AI to write software.</p>
+          <p class="use"><span class="use-label">Use it to</span> Drop the file into a project folder and your assistant stops over-engineering, asks fewer pointless questions and writes smaller, clearer changes.</p>
+          <p class="evidence">823 stars/day since Jan 2026 &middot; last commit 6 months ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            <span class="flag">no commits in over six months</span>
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;4,039</span>
+          <span class="per">stars this week</span>
+          <span class="total">225,578 total</span>
+          <span class="lang">Unknown</span>
+        </div>
+      </li>
+      <li class="row" data-cat="money">
+        <div class="rank" aria-hidden="true">07</div>
+        <div class="body">
+          <h3><a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener">AgriciDaniel/claude-seo</a></h3>
+          <p class="what">A packaged SEO team for an AI assistant: 26 sub-skills and 19 sub-agents covering technical audits, keyword research and content planning.</p>
+          <p class="use"><span class="use-label">Use it to</span> Audit your firm&#x27;s website against the searches clients actually type, and get a prioritised fix list before paying an agency for a first pass.</p>
+          <p class="evidence">87 stars/day since Feb 2026 &middot; last commit 5 days ago</p>
+          <p class="foot">
+            <span class="tag tag-money">Money</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;3,081</span>
+          <span class="per">stars this week</span>
+          <span class="total">22,822 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="office">
+        <div class="rank" aria-hidden="true">08</div>
+        <div class="body">
+          <h3><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">anthropics/knowledge-work-plugins</a></h3>
+          <p class="what">Anthropic&#x27;s own open-source plugins for knowledge workers — documents, spreadsheets, decks and research inside an AI assistant. The closest thing on this list to an accountant&#x27;s actual daily work.</p>
+          <p class="use"><span class="use-label">Use it to</span> Start here if you want AI help with Excel reconciliations, board notes and client email rather than with building software.</p>
+          <p class="evidence">121 stars/day since Jan 2026 &middot; last commit 3h ago</p>
+          <p class="foot">
+            <span class="tag tag-office">Office work</span>
+            <span class="also">also on this month</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;2,789</span>
+          <span class="per">stars this week</span>
+          <span class="total">33,472 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">09</div>
+        <div class="body">
+          <h3><a href="https://github.com/ruvnet/ruflo" target="_blank" rel="noopener">ruvnet/ruflo</a></h3>
+          <p class="what">An agent harness for coordinating many agents as a swarm, with shared state and routing between them. The most infrastructure-heavy entry of its week.</p>
+          <p class="use"><span class="use-label">Use it to</span> Only worth the effort once a single assistant is already saving you hours and you want larger automated pipelines.</p>
+          <p class="evidence">156 stars/day since Jun 2025 &middot; last commit 2h ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;2,296</span>
+          <span class="per">stars this week</span>
+          <span class="total">79,822 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">10</div>
+        <div class="body">
+          <h3><a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">akitaonrails/ai-memory</a></h3>
+          <p class="what">Long-term memory for AI coding assistants: a local store so a fresh session can pick up yesterday&#x27;s project with its context and handoff notes intact.</p>
+          <p class="use"><span class="use-label">Use it to</span> Stop re-explaining the same three things to your assistant every single morning.</p>
+          <p class="evidence">89 stars/day since May 2026 &middot; last commit 4h ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;2,239</span>
+          <span class="per">stars this week</span>
+          <span class="total">14,128 total</span>
+          <span class="lang">Rust</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">11</div>
+        <div class="body">
+          <h3><a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noopener">pingdotgg/t3code</a></h3>
+          <p class="what">A control surface for the agents already installed on your computer, with iOS, Android, web and desktop apps — so a long task can keep running while you leave the desk.</p>
+          <p class="use"><span class="use-label">Use it to</span> Start something at the office, check on it from your phone, and pick up the finished file at home.</p>
+          <p class="evidence">118 stars/day since Feb 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            <span class="also">also on this month</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,988</span>
+          <span class="per">stars this week</span>
+          <span class="total">30,890 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">12</div>
+        <div class="body">
+          <h3><a href="https://github.com/fastapi/fastapi" target="_blank" rel="noopener">fastapi/fastapi</a></h3>
+          <p class="what">FastAPI framework, high performance, easy to learn, fast to code, ready for production</p>
+          <p class="use pending">No plain-English write-up yet &mdash; this one has just arrived on the board. The words above are GitHub&rsquo;s, not mine.</p>
+          <p class="evidence">36 stars/day since Dec 2018 &middot; last commit 23h ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;1,089</span>
+          <span class="per">stars this week</span>
+          <span class="total">104,195 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="board-section" id="month">
+    <header class="section-head">
+      <h2>This month</h2>
+      <p class="deck">Thirty days, the slowest and most useful signal of the three. Anything here has survived a month of attention &mdash; and the enterprise and infrastructure work that never trends for a day surfaces on this board first.</p>
+    </header>
+    <ol class="board">
+
+      <li class="row" data-cat="media">
+        <div class="rank" aria-hidden="true">01</div>
+        <div class="body">
+          <h3><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">debpalash/VoiceStudio</a></h3>
+          <p class="what">A free, local clone of ElevenLabs. It clones a voice, turns text into speech in that voice, dubs video into other languages and reads long documents aloud — on your own machine, so no per-minute bill and no voice clips on someone else&#x27;s server.</p>
+          <p class="use"><span class="use-label">Use it to</span> Narrate a client explainer or a LinkedIn video without a subscription, and cut the same script in English and Hindi from one session.</p>
+          <p class="evidence">456 stars/day since Apr 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-media">Media</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;52,726</span>
+          <span class="per">stars this month</span>
+          <span class="total">91,642 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">02</div>
+        <div class="body">
+          <h3><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">DietrichGebert/ponytail</a></h3>
+          <p class="what">A persona for your AI agent that makes it behave like the laziest senior developer in the room: the best code is the code you don&#x27;t write.</p>
+          <p class="use"><span class="use-label">Use it to</span> A corrective if your assistant keeps proposing elaborate systems where a two-line change would do.</p>
+          <p class="evidence">1,292 stars/day since Jun 2026 &middot; last commit 10 days ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            <span class="flag">climb is faster than a codebase usually earns (1,292/day)</span>
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;32,214</span>
+          <span class="per">stars this month</span>
+          <span class="total">178,319 total</span>
+          <span class="lang">JavaScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="security">
+        <div class="rank" aria-hidden="true">03</div>
+        <div class="body">
+          <h3><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">cloudflare/security-audit-skill</a></h3>
+          <p class="what repeated">Written up under This week above &mdash; still climbing, on a second timescale.</p>
+          <p class="use"><span class="use-label">Use it to</span> If a portal touches client KYC, PAN or bank data, run this review before it goes live — it is a checklist an accounting firm can actually defend.</p>
+          <p class="evidence">385 stars/day since Jun 2026 &middot; last commit 43 days ago</p>
+          <p class="foot">
+            <span class="tag tag-security">Security</span>
+            <span class="also">also on this week</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;27,415</span>
+          <span class="per">stars this month</span>
+          <span class="total">50,406 total</span>
+          <span class="lang">JavaScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">04</div>
+        <div class="body">
+          <h3><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">affaan-m/ECC</a></h3>
+          <p class="what repeated">Written up under Today above &mdash; still climbing, on a second timescale.</p>
+          <p class="use"><span class="use-label">Use it to</span> Set it up once and your assistant remembers how your firm words a covering letter, which folders matter, and what it must never touch.</p>
+          <p class="evidence">1,028 stars/day since Jan 2026 &middot; last commit 1 days ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            <span class="also">also on today</span>
+            <span class="flag">climb is faster than a codebase usually earns (1,028/day)</span>
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;23,998</span>
+          <span class="per">stars this month</span>
+          <span class="total">291,018 total</span>
+          <span class="lang">JavaScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="media">
+        <div class="rank" aria-hidden="true">05</div>
+        <div class="body">
+          <h3><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">heygen-com/hyperframes</a></h3>
+          <p class="what">Builds video from HTML. You (or an AI) write a web page, and it renders as a video file — the same content, output as reel, ad or explainer.</p>
+          <p class="use"><span class="use-label">Use it to</span> Design one good template for firm announcements, then produce every future video from it without opening a video editor.</p>
+          <p class="evidence">319 stars/day since Mar 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-media">Media</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;20,501</span>
+          <span class="per">stars this month</span>
+          <span class="total">74,057 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">06</div>
+        <div class="body">
+          <h3><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">paperclipai/paperclip</a></h3>
+          <p class="what">An open-source app for managing agents at work: assign tasks, watch progress, keep a record of what each one did.</p>
+          <p class="use"><span class="use-label">Use it to</span> The closest thing here to a staff roster for AI — useful once more than one agent is doing real work for you.</p>
+          <p class="evidence">452 stars/day since Mar 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;19,922</span>
+          <span class="per">stars this month</span>
+          <span class="total">108,065 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">07</div>
+        <div class="body">
+          <h3><a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">Panniantong/Agent-Reach</a></h3>
+          <p class="what">Gives an AI agent eyes on the open internet: it can read and search X, Reddit, YouTube, Bilibili and similar, then feed what it finds back into your workflow.</p>
+          <p class="use"><span class="use-label">Use it to</span> Track what clients and competitors are saying this week without scrolling yourself — hand the agent a topic and a short list of accounts.</p>
+          <p class="evidence">427 stars/day since Feb 2026 &middot; last commit 2 days ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;19,461</span>
+          <span class="per">stars this month</span>
+          <span class="total">105,056 total</span>
+          <span class="lang">Python</span>
+        </div>
+      </li>
+      <li class="row" data-cat="design">
+        <div class="rank" aria-hidden="true">08</div>
+        <div class="body">
+          <h3><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">pbakaus/impeccable</a></h3>
+          <p class="what repeated">Written up under Today above &mdash; still climbing, on a second timescale.</p>
+          <p class="use"><span class="use-label">Use it to</span> The reason a form or dashboard an AI builds for you stops arriving as five identical rounded cards with a soft grey shadow.</p>
+          <p class="evidence">262 stars/day since Nov 2025 &middot; last commit 11h ago</p>
+          <p class="foot">
+            <span class="tag tag-design">Design</span>
+            <span class="also">also on today</span>
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;18,683</span>
+          <span class="per">stars this month</span>
+          <span class="total">90,821 total</span>
+          <span class="lang">Rust</span>
+        </div>
+      </li>
+      <li class="row" data-cat="security">
+        <div class="rank" aria-hidden="true">09</div>
+        <div class="body">
+          <h3><a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noopener">NationalSecurityAgency/ghidra</a></h3>
+          <p class="what">The NSA&#x27;s reverse-engineering framework. Not new, not AI — a serious tool for taking compiled software apart to see what it does.</p>
+          <p class="use"><span class="use-label">Use it to</span> Due-diligence curiosity: check what a downloaded program actually contains before running it on a machine holding client data.</p>
+          <p class="evidence">34 stars/day since Mar 2019 &middot; last commit 18h ago</p>
+          <p class="foot">
+            <span class="tag tag-security">Security</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;15,456</span>
+          <span class="per">stars this month</span>
+          <span class="total">95,124 total</span>
+          <span class="lang">Java</span>
+        </div>
+      </li>
+      <li class="row" data-cat="dev">
+        <div class="rank" aria-hidden="true">10</div>
+        <div class="body">
+          <h3><a href="https://github.com/tashfeenahmed/freellmapi" target="_blank" rel="noopener">tashfeenahmed/freellmapi</a></h3>
+          <p class="what">One API in front of 34 free LLM providers and hundreds of free model endpoints, advertised at billions of tokens a month.</p>
+          <p class="use"><span class="use-label">Use it to</span> A cheap way to experiment with many models without five subscriptions — free tiers are free for a reason, so expect rough edges.</p>
+          <p class="evidence">227 stars/day since Apr 2026 &middot; last commit 13h ago</p>
+          <p class="foot">
+            <span class="tag tag-dev">Dev tools</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;13,636</span>
+          <span class="per">stars this month</span>
+          <span class="total">42,816 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+      <li class="row" data-cat="security">
+        <div class="rank" aria-hidden="true">11</div>
+        <div class="body">
+          <h3><a href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener">NVIDIA/OpenShell</a></h3>
+          <p class="what">A private runtime for autonomous AI agents: it wraps an agent in a sandbox so its file and network access can be controlled rather than hoped for.</p>
+          <p class="use"><span class="use-label">Use it to</span> The reason to care: an agent can work on a real machine without being able to wander into client folders uninvited.</p>
+          <p class="evidence">83 stars/day since Feb 2026 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-security">Security</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;11,510</span>
+          <span class="per">stars this month</span>
+          <span class="total">20,332 total</span>
+          <span class="lang">Rust</span>
+        </div>
+      </li>
+      <li class="row" data-cat="agents">
+        <div class="rank" aria-hidden="true">12</div>
+        <div class="body">
+          <h3><a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">thedotmack/claude-mem</a></h3>
+          <p class="what">Persistent memory across sessions: it captures what your agent did and replays the relevant part next time you open it.</p>
+          <p class="use"><span class="use-label">Use it to</span> Stop re-explaining the same project context every morning; the assistant starts where it left off.</p>
+          <p class="evidence">246 stars/day since Aug 2025 &middot; last commit under an hour ago</p>
+          <p class="foot">
+            <span class="tag tag-agents">AI assistants</span>
+            
+            
+          </p>
+        </div>
+        <div class="meta">
+          <span class="delta">&plus;9,345</span>
+          <span class="per">stars this month</span>
+          <span class="total">103,773 total</span>
+          <span class="lang">TypeScript</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="rest">
+    <h2>Also climbing, one line each</h2>
+    <p class="hint">Below the top of each board. Included so you are not surprised when a colleague mentions one. Descriptions here are GitHub&rsquo;s own words.</p>
+    <ul>
+      <li><span class="r-name"><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra/superpowers</a></span><span>An agentic skills framework &amp; software development methodology that works. <span class="r-board">(today)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/android/skills" target="_blank" rel="noopener">android/skills</a></span><span> <span class="r-board">(this week)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">mksglu/context-mode</a></span><span>Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and… <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">anthropics/claude-plugins-official</a></span><span>Official, Anthropic-managed directory of high quality Claude Code Plugins. <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/earthtojake/text-to-cad" target="_blank" rel="noopener">earthtojake/text-to-cad</a></span><span>Design physical products with AI <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">HKUDS/CLI-Anything</a></span><span>&quot;CLI-Anything: Making ALL Software Agent-Native&quot; -- CLI-Hub: https://clianything.cc/ <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/cursor/plugins" target="_blank" rel="noopener">cursor/plugins</a></span><span>Cursor plugin specification and official plugins <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/supabase/supabase" target="_blank" rel="noopener">supabase/supabase</a></span><span>The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI… <span class="r-board">(this month)</span></span></li>
+      <li><span class="r-name"><a href="https://github.com/flutter/flutter" target="_blank" rel="noopener">flutter/flutter</a></span><span>Flutter makes it easy and fast to build beautiful apps for mobile and beyond <span class="r-board">(this month)</span></span></li>
+    </ul>
+  </section>
+
+
+  <section class="hn" id="hn">
+    <header class="section-head">
+      <h2>Meanwhile, on Hacker News</h2>
+      <p class="deck">Stories from the last 24 hours, by points. Headlines and links only &mdash; the titles are other
+      people&rsquo;s words, so there is no commentary of mine layered on top.</p>
+    </header>
+    <ol class="hn-list">
+      <li><a href="https://news.ycombinator.com/item?id=50259604" target="_blank" rel="noopener">US Government is hiding a secret court ruling about how it spies on Americans</a><span class="hn-meta"><span class="hn-host">wired.com</span><span class="hn-pts">848 points</span><span class="hn-cmt">302 comments</span><span class="hn-age">14h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50261998" target="_blank" rel="noopener">Ghostty 1.4</a><span class="hn-meta"><span class="hn-host">ghostty.org</span><span class="hn-pts">844 points</span><span class="hn-cmt">262 comments</span><span class="hn-age">11h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50261319" target="_blank" rel="noopener">Genie 4</a><span class="hn-meta"><span class="hn-host">deepmind.google</span><span class="hn-pts">791 points</span><span class="hn-cmt">481 comments</span><span class="hn-age">12h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50260814" target="_blank" rel="noopener">Anthropic trained Claude on illegally obtained Stanford professors&#x27; books</a><span class="hn-meta"><span class="hn-host">stanforddaily.com</span><span class="hn-pts">490 points</span><span class="hn-cmt">268 comments</span><span class="hn-age">12h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50257326" target="_blank" rel="noopener">Wikipedia&#x27;s Cleanup of AI-Generated Content</a><span class="hn-meta"><span class="hn-host">spectrum.ieee.org</span><span class="hn-pts">466 points</span><span class="hn-cmt">211 comments</span><span class="hn-age">17h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50257419" target="_blank" rel="noopener">Python&#x27;s experimental JIT to be removed</a><span class="hn-meta"><span class="hn-host">lwn.net</span><span class="hn-pts">463 points</span><span class="hn-cmt">252 comments</span><span class="hn-age">16h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50256985" target="_blank" rel="noopener">Roblox downloaded 145GB models from us (including adult content) without asking</a><span class="hn-meta"><span class="hn-host">open3dlab.com</span><span class="hn-pts">461 points</span><span class="hn-cmt">268 comments</span><span class="hn-age">17h ago</span></span></li><li><a href="https://news.ycombinator.com/item?id=50255298" target="_blank" rel="noopener">The Mythical Man-Month in the Age of AI</a><span class="hn-meta"><span class="hn-host">j11g.com</span><span class="hn-pts">444 points</span><span class="hn-cmt">310 comments</span><span class="hn-age">21h ago</span></span></li>
+    </ol>
+    <p class="hn-note">Each link opens the Hacker News discussion. Points, comment counts and
+    posting times come from the same run as the GitHub boards above, so everything here is one
+    morning&rsquo;s snapshot &mdash; not a live feed.</p>
+  </section>
+
+  <section class="start">
+    <h2>If you only try one thing this week</h2>
+    <p class="lede">Three starting points ordered by how little you have to learn. All assume you already pay for an AI assistant like Claude or ChatGPT &mdash; that is the only prerequisite.</p>
+    <div class="picks">
+      <div class="pick">
+        <span class="time">Least effort &middot; 2 minutes</span>
+        <h3><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">andrej-karpathy-skills</a></h3>
+        <p class="why">Download one text file, drop it in a folder, ask your assistant to follow it. You notice the difference in the first reply. Nothing to install.</p>
+      </div>
+      <div class="pick">
+        <span class="time">Closest to a desk job &middot; an afternoon</span>
+        <h3><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">knowledge-work-plugins</a></h3>
+        <p class="why">Anthropic&rsquo;s own plugins for spreadsheet, document and deck work. This is the one that maps onto accounts, notes and client correspondence.</p>
+      </div>
+      <div class="pick">
+        <span class="time">Most immediately visible &middot; an hour</span>
+        <h3><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a></h3>
+        <p class="why">Record one decent script, get narration you can reuse. It runs locally, which matters if the content mentions a client by name.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <p><strong>How this was made.</strong> Taken from the public 24-hour, 7-day and 30-day boards at github.com/trending, then re-sorted strictly by stars gained &mdash; GitHub&rsquo;s own ordering blends velocity with recency, so its rank numbers would not line up with the deltas shown here. Star totals, creation dates and last-commit dates come from the GitHub API; Hacker News comes from its own feed. A scheduled job rebuilds the page at 09:15 IST every morning, so numbers are always from that morning, never hand-edited.</p>
+    <p><strong>What this is not.</strong> Nothing here is installed, audited or endorsed. A star count is popularity, not a safety review &mdash; be especially careful with anything that asks for access to your accounts, files or email. Where a repository climbs faster than its age explains, treat that as measuring a marketing push as much as a codebase.</p>
+    <p><strong>Reading the fine print.</strong> Items marked <em>also on another board</em> moved fast on more than one timeframe, which is usually the stronger signal. Where a repository arrives on a board without a written-up use case, the card says so plainly and shows GitHub&rsquo;s own description instead of an invented one.</p>
+    <p><strong>Evidence.</strong> Every figure here traces to a payload saved during the build: the raw board HTML and Hacker News feed are archived and hashed in
+    <a href="https://github.com/dhruvdua88/github-trending-briefing/blob/main/build.json">build.json</a>, and one delta is recomputed from that archive on every run before the page is allowed to deploy.
+    Yesterday&rsquo;s pages stay as published in the <a href="archive/index.html">archive</a> &mdash; day 2026-10-28 onwards, nothing retro-edited.</p>
+    <p><strong>Source.</strong> Generated from <a href="https://github.com/dhruvdua88/github-trending-briefing">dhruvdua88/github-trending-briefing</a> &middot; build 2026-10-28T09:39:58+05:30 &middot; status <code>ok</code> &middot; Hacker News via <code>firebase</code> &middot; write-ups live in <code>content.py</code>, one entry per repository.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.board-section'));
+
+  function apply(cat){
+    rows.forEach(function(r){
+      r.hidden = cat !== 'all' && r.getAttribute('data-cat') !== cat;
+    });
+    sections.forEach(function(s){
+      var visible = s.querySelectorAll('.row:not([hidden])').length;
+      var head = s.querySelector('.section-head');
+      if (head) head.style.opacity = visible ? '1' : '.35';
+      var note = s.querySelector('.count-note');
+      if (!note){
+        note = document.createElement('p');
+        note.className = 'count-note';
+        s.querySelector('.board').after(note);
+      }
+      note.textContent = cat === 'all' ? '' : visible + (visible === 1 ? ' match' : ' matches') + ' on this board';
+    });
+    chips.forEach(function(c){
+      c.setAttribute('aria-pressed', String(c.getAttribute('data-filter') === cat));
+    });
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){ apply(c.getAttribute('data-filter')); });
+  });
+
+  document.querySelectorAll('.jump a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  apply('all');
+})();
+</script>
+</body>
+</html>
