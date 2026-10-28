@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-28T09:44:58+05:30",
+  "generated_at": "2026-10-28T10:45:25+05:30",
   "date": "2026-10-28",
-  "commit": "ff261f2e621e12d2e2746c39d50d8bcc08fa535b",
-  "run_url": "https://github.com/dhruvdua88/github-trending-briefing/actions/runs/40631231350",
+  "commit": "b4c73126d6bc306d143159eda45749370a8c48dd",
+  "run_url": "https://github.com/dhruvdua88/github-trending-briefing/actions/runs/40636907837",
   "status": "ok",
   "degraded": [],
   "boards": {
@@ -19,25 +19,25 @@
   "sources": {
     "trending-daily": {
       "url": "https://github.com/trending?since=daily",
-      "sha256": "ef28ad602c6c0627fba4ae9d1d684a108404abdc07f56e6b47c3735275146ecd",
+      "sha256": "511085089775d93a034363d0bf9b931eef1cd9a500bf2fb0e6fbd8c2e4ffd8af",
       "bytes": 584436,
       "stored": "archive/raw/2026-10-28/trending-daily.html.gz"
     },
     "trending-weekly": {
       "url": "https://github.com/trending?since=weekly",
-      "sha256": "a1202efd67372ff0b56ef7ed1fa365558df7ca3b79fef09a0c456e0126582f16",
-      "bytes": 605620,
+      "sha256": "a5ed7db8b714eebd365fe8fb1eaf515db30a2ad1c9b67679ea83986a76183e58",
+      "bytes": 605618,
       "stored": "archive/raw/2026-10-28/trending-weekly.html.gz"
     },
     "trending-monthly": {
       "url": "https://github.com/trending?since=monthly",
-      "sha256": "6f93e2271ea55d230f66b319d9c43e9d5321a072bc9ab088aeb88e10f8d40a13",
-      "bytes": 706070,
+      "sha256": "872d9c96dbda68a3bf5cc99e346f24fd826afec84927c19c07bcc333a3203b78",
+      "bytes": 706068,
       "stored": "archive/raw/2026-10-28/trending-monthly.html.gz"
     },
     "hacker-news": {
       "url": "https://hacker-news.firebaseio.com/v0/topstories.json",
-      "sha256": "0fed27d06eec1aacfc24cbcb24dbb2351af49e4d8b604250438ec793b2f19155",
+      "sha256": "800dc199b9a1483c81d9098c4806f4570aab53646fe7730f0760caae20941918",
       "bytes": 2524,
       "stored": "archive/raw/2026-10-28/hacker-news.json.gz"
     }
