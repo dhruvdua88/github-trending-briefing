@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What's hot on GitHub — {{UPDATED_SHORT}}</title>
+<meta name="build-time" content="{{UPDATED_ISO}}">
 <meta name="description" content="GitHub trending today, this week and this month, explained in plain English with use cases for non-coders. Rebuilt every morning.">
 <meta property="og:title" content="What's hot on GitHub — a briefing for people who don't write code">
 <meta property="og:description" content="Three leaderboards: 24 hours, 7 days, 30 days. What each project actually is, and what you would do with it.">
@@ -330,6 +331,24 @@ footer.colophon strong{color:#33443b}
   });
 
   apply('all');
+
+  // If the daily rebuild stopped running, say so on the page itself rather than
+  // letting a stale morning pass for today's.
+  var meta = document.querySelector('meta[name="build-time"]');
+  if (meta) {
+    var built = Date.parse(meta.content);
+    var hours = (Date.now() - built) / 36e5;
+    if (!isNaN(hours) && hours > 30) {
+      var banner = document.createElement('div');
+      banner.className = 'banner banner-stale';
+      banner.setAttribute('role', 'status');
+      var days = Math.floor(hours / 24);
+      banner.innerHTML = '<strong>This page is ' + (days > 1 ? days + ' days old' : 'a day old') +
+        '.</strong> The daily rebuild has not run since ' + meta.content.slice(0, 10) +
+        '. Treat these numbers as history, not this morning.';
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+  }
 })();
 </script>
 </body>

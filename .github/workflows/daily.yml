@@ -5,7 +5,12 @@ name: Rebuild briefing
 # run is visible rather than silently wrong.
 on:
   schedule:
-    - cron: "45 3 * * *"
+    # Three attempts, 30 minutes apart: GitHub's scheduler can start cron runs
+    # late, and a second attempt costs nothing because generate.py exits early
+    # when this morning's build is already fresh (SKIP_IF_FRESH_HOURS).
+    - cron: "45 3 * * *"   # 09:15 IST
+    - cron: "15 4 * * *"   # 09:45 IST
+    - cron: "45 4 * * *"   # 10:15 IST
   workflow_dispatch:
   push:
     branches: [main]
@@ -36,6 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PAGES_REPO_SLUG: ${{ github.repository }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SKIP_IF_FRESH_HOURS: "5"
         run: python generate.py
 
       # Independent check: re-read the archived payloads, recompute a delta,

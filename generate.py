@@ -558,7 +558,29 @@ def prune_raw(today: datetime.date) -> list[str]:
 
 
 # -------------------------------------------------------------------------- main
+def already_fresh(hours: float) -> str | None:
+    """Return a reason string when build.json is newer than `hours`, else None."""
+    path = ROOT / "build.json"
+    if not path.exists():
+        return None
+    try:
+        born = datetime.datetime.fromisoformat(json.loads(path.read_text(encoding="utf-8"))["generated_at"])
+    except (json.JSONDecodeError, KeyError, ValueError):
+        return None
+    age = (datetime.datetime.now(born.tzinfo) - born).total_seconds() / 3600
+    if age < hours:
+        return f"existing build is {age:.1f}h old (limit {hours}h)"
+    return None
+
+
 def main() -> int:
+    skip_after = os.environ.get("SKIP_IF_FRESH_HOURS")
+    if skip_after:
+        reason = already_fresh(float(skip_after))
+        if reason:
+            print(f"skipping rebuild: {reason}")
+            return 0
+
     now = datetime.datetime.now(IST)
     today = now.date()
     date_dir = RAW / today.isoformat()
