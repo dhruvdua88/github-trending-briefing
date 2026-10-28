@@ -1,4 +1,5 @@
 name: Rebuild briefing
+# Touched 2026-10-28 to force the scheduler to re-read the cron entries.
 
 # 03:45 UTC = 09:15 IST, every morning. GitHub can delay scheduled runs by a
 # few minutes under load; the page always shows its own build time, so a late
@@ -11,6 +12,8 @@ on:
     - cron: "45 3 * * *"   # 09:15 IST
     - cron: "15 4 * * *"   # 09:45 IST
     - cron: "45 4 * * *"   # 10:15 IST
+    - cron: "15 5 * * *"   # 10:45 IST
+    - cron: "45 5 * * *"   # 11:15 IST
   workflow_dispatch:
   push:
     branches: [main]

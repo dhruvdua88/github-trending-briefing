@@ -21,7 +21,7 @@ Everything happens in GitHub Actions. Nothing runs on a personal machine; no lap
 
 GitHub starts scheduled runs late more often than anyone would like — 5 to 40 minutes is routine, and a brand-new repository can wait longer for its first one. So:
 
-- the schedule has **three attempts**, 30 minutes apart (09:15, 09:45, 10:15 IST). Extra attempts cost nothing: `generate.py` exits immediately when the morning's build is already under 5 hours old (`SKIP_IF_FRESH_HOURS`).
+- the schedule has **five attempts**, 30 minutes apart (09:15 through 11:15 IST). Extra attempts cost nothing: `generate.py` exits immediately when the morning's build is already under 5 hours old (`SKIP_IF_FRESH_HOURS`).
 - the page carries its own build time, and a small script in it turns that into a visible warning if the page is more than 30 hours old. A stale page announces itself instead of passing for this morning's.
 
 ## It refuses to lie
