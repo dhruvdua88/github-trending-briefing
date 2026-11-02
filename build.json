@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-11-01T16:17:26+05:30",
-  "date": "2026-11-01",
-  "commit": "808022da0e184783e27d253f5684980f490fa13f",
-  "run_url": "https://github.com/dhruvdua88/github-trending-briefing/actions/runs/41299004850",
+  "generated_at": "2026-11-02T17:10:51+05:30",
+  "date": "2026-11-02",
+  "commit": "5827f6955f6fce0cf55e92d4f61096fd8cc1625f",
+  "run_url": "https://github.com/dhruvdua88/github-trending-briefing/actions/runs/41438681602",
   "status": "ok",
   "degraded": [],
   "boards": {
-    "today": 17,
+    "today": 15,
     "week": 16,
-    "month": 19
+    "month": 18
   },
-  "cards_written_up": 27,
-  "one_liners": 16,
+  "cards_written_up": 25,
+  "one_liners": 15,
   "hacker_news": {
     "count": 8,
     "source": "firebase"
@@ -19,27 +19,27 @@
   "sources": {
     "trending-daily": {
       "url": "https://github.com/trending?since=daily",
-      "sha256": "e200098be07e540ba635d8fe7309cd3218a4c887df8dfa99592a4f3c8abe6298",
-      "bytes": 620335,
-      "stored": "archive/raw/2026-11-01/trending-daily.html.gz"
+      "sha256": "ba660cc791a7c0bf091c3658496684ece02ec14b406b46e5c8d8b06bc43ad80d",
+      "bytes": 594427,
+      "stored": "archive/raw/2026-11-02/trending-daily.html.gz"
     },
     "trending-weekly": {
       "url": "https://github.com/trending?since=weekly",
-      "sha256": "db32fd64cff843e5c20c150b89251aa21ddcc6f85062a68e5e9aa08342eb2eb6",
-      "bytes": 605465,
-      "stored": "archive/raw/2026-11-01/trending-weekly.html.gz"
+      "sha256": "b0eafa4279c43617f263e4bb26b0a00184e7056382b7f865d434d3c86f066ada",
+      "bytes": 606256,
+      "stored": "archive/raw/2026-11-02/trending-weekly.html.gz"
     },
     "trending-monthly": {
       "url": "https://github.com/trending?since=monthly",
-      "sha256": "46949086606bb97d85322684dfc66d43808af0b85ba3ed295857fd20c425ec3d",
-      "bytes": 643196,
-      "stored": "archive/raw/2026-11-01/trending-monthly.html.gz"
+      "sha256": "ae60afd519bb633eaed37540012d6ec8c6fe3755c0efdc9d1eb2adee725ed6e6",
+      "bytes": 632821,
+      "stored": "archive/raw/2026-11-02/trending-monthly.html.gz"
     },
     "hacker-news": {
       "url": "https://hacker-news.firebaseio.com/v0/topstories.json",
-      "sha256": "6ec3a48344691a5133d7aa80eca081081d5375e39155e5c3c3afd438e90d0dd9",
-      "bytes": 2615,
-      "stored": "archive/raw/2026-11-01/hacker-news.json.gz"
+      "sha256": "518fa6d5820c2e474a034b9dd0f1403e06e93cd512c4f93f325a398d8faa8226",
+      "bytes": 2486,
+      "stored": "archive/raw/2026-11-02/hacker-news.json.gz"
     }
   }
 }
